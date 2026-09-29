@@ -1,0 +1,42 @@
+cff-version: 1.2.0
+message: If you use this model, credit its author and keep the licence file with it.
+title: Mille "Mire" Feuille (free original 3D model)
+type: dataset
+authors:
+  - name: Mohka Noir
+license: Apache-2.0
+abstract: >-
+  Redistributed under the author's Apache-2.0 licence (LICENSE, readme/Readme-LicenseText-Full(EN).txt).
+  The author's summary (readme/Readme-SimpleLicense(EN-JP).txt) allows redistribution, derivative
+  versions, re-upload and revenue, on condition that the original source is credited or the licence
+  file is included. Mire.blend, MireQuest.blend, Mire.unitypackage and readme/ are the author's
+  files, unchanged.
+
+
+  MODIFIED FILES (Apache-2.0 section 4(b)): usd/Mire.usda is not the author's file. The repository
+  maintainers made it from Mire.blend on 2026-09-29 with Blender 5.2.1 LTS (build 9e2066aef7ef,
+  factory settings), a local conversion tool, and changed the model on the way, in memory only
+  (Mire.blend is unchanged). The changes: (1) On the mesh Body, the shape keys named with the
+  symbols U+2227 and U+25B2 are renamed u2227 and u25B2: both become "_" as USD names, and the
+  exporter then writes 110 blend shape names but 109 targets, which makes a USD reader drop every
+  blend shape of the face. (2) Only the object Armature and its 18 child meshes are exported; Body.LP
+  and Mire.Ms.Body.LP (the low-poly version) and Camera are not. The meshes keep the places the
+  .blend gives them: the avatar at the origin wears the shirt, spats and shoes, and the other outfit
+  pieces (Mire.Ms.Body.A, .B and .C, Mire.Ms.Fleur.Dress, Mire.Ms.Fleur.Dress.Alt, Mire.Ms.Sweater)
+  stand 1 to 3 m beside it, bound to the same skeleton.
+
+
+  EXPORT OPTIONS (bpy.ops.wm.usd_export, every other option at its default): filepath=Mire.usda,
+  check_existing=False, selected_objects_only=True, export_animation=False, export_hair=False,
+  export_uvmaps=True, rename_uvmaps=True, export_mesh_colors=True, export_normals=True,
+  export_materials=True, export_subdivision=BEST_MATCH, export_armatures=True,
+  only_deform_bones=False, export_shapekeys=True, use_instancing=False, evaluation_mode=VIEWPORT,
+  generate_preview_surface=True, generate_materialx_network=False, convert_orientation=False,
+  export_textures_mode=NEW, overwrite_textures=True, relative_paths=True, xform_op_mode=TRS,
+  root_prim_path=/Mire, export_custom_properties=True, author_blender_name=True,
+  convert_world_material=False, allow_unicode=True, export_meshes=True, export_lights=False,
+  export_cameras=False, export_curves=False, export_points=False, export_volumes=False,
+  triangulate_meshes=False, usdz_downscale_size=KEEP, merge_parent_xform=False,
+  convert_scene_units=METERS. The stage is Z up, 1 metre per unit, rest pose, no animation.
+  usd/textures/ holds the eleven images packed in Mire.blend, written byte for byte as packed.
+  Two exports of the same .blend write the same prims and values in a different prim order.
