@@ -26,6 +26,18 @@ abstract: >-
   stand 1 to 3 m beside it, bound to the same skeleton.
 
 
+  EXPORTER NAMING AND SHAPE VALUES: a USD name holds only letters, digits and "_", so the exporter
+  spells every other character as "_". This changes 76 of the 117 joint names (Upper_leg.L becomes
+  Upper_leg_L) and 25 more blend shape names: 24 on Body, the fifteen viseme shapes among them, and
+  "Key 4" on Mire.Ms.Body.B, which becomes Key_4. The exporter also makes the blend shape names the
+  skeleton drives unique across the stage: Pants, Top and StockingsOff keep their names on
+  Mire.Ms.Arms and take the suffixes 2 to 9 on Mire.Ms.Body.A, .B, .Butt, .C, .Legs, .Shoulders,
+  .Thighs and .Torso, in that order (Pants2 to Pants9). The shape key value the .blend sets
+  (StockingsOff at 1 on Mire.Ms.Body.Butt, StockingsOff4 in USD) goes to the SkelAnimation
+  /Mire/Armature/Armature/Anim, which the skeleton does not bind, so a USD reader shows it at 0: 96
+  vertices sit up to 15.5 mm from the .blend's look, under the spats.
+
+
   EXPORT OPTIONS (bpy.ops.wm.usd_export, every other option at its default): filepath=Mire.usda,
   check_existing=False, selected_objects_only=True, export_animation=False, export_hair=False,
   export_uvmaps=True, rename_uvmaps=True, export_mesh_colors=True, export_normals=True,
