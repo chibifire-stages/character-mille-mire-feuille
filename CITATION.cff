@@ -19,21 +19,23 @@ abstract: >-
   (Mire.blend is unchanged). The changes: (1) On the mesh Body, the shape keys named with the
   symbols U+2227 and U+25B2 are renamed u2227 and u25B2: both become "_" as USD names, and the
   exporter then writes 110 blend shape names but 109 targets, which makes a USD reader drop every
-  blend shape of the face. (2) Only the object Armature and its 18 child meshes are exported; Body.LP
-  and Mire.Ms.Body.LP (the low-poly version) and Camera are not. The meshes keep the places the
-  .blend gives them: the avatar at the origin wears the shirt, spats and shoes, and the other outfit
-  pieces (Mire.Ms.Body.A, .B and .C, Mire.Ms.Fleur.Dress, Mire.Ms.Fleur.Dress.Alt, Mire.Ms.Sweater)
-  stand 1 to 3 m beside it, bound to the same skeleton.
+  blend shape of the face. (2) Only the object Armature and the 12 child meshes the avatar wears are
+  exported: the body, the hair, the shirt, the spats and the shoes, at the places the .blend gives
+  them. The six outfit pieces the .blend stands 1 to 3 m beside the avatar, bound to the same
+  skeleton (Mire.Ms.Body.A, .B and .C, Mire.Ms.Fleur.Dress, Mire.Ms.Fleur.Dress.Alt,
+  Mire.Ms.Sweater; the rows marked off in Mire.wardrobe.tsv), are left out, because a posed skeleton
+  flings them into spikes 1 to 3 m long. Body.LP and Mire.Ms.Body.LP (the low-poly version) and
+  Camera are not exported either.
 
 
   EXPORTER NAMING AND SHAPE VALUES: a USD name holds only letters, digits and "_", so the exporter
   spells every other character as "_". This changes 76 of the 117 joint names (Upper_leg.L becomes
-  Upper_leg_L) and 25 more blend shape names: 24 on Body, the fifteen viseme shapes among them, and
-  "Key 4" on Mire.Ms.Body.B, which becomes Key_4. The exporter also makes the blend shape names the
-  skeleton drives unique across the stage: Pants, Top and StockingsOff keep their names on
-  Mire.Ms.Arms and take the suffixes 2 to 9 on Mire.Ms.Body.A, .B, .Butt, .C, .Legs, .Shoulders,
-  .Thighs and .Torso, in that order (Pants2 to Pants9). The shape key value the .blend sets
-  (StockingsOff at 1 on Mire.Ms.Body.Butt, StockingsOff4 in USD) goes to the SkelAnimation
+  Upper_leg_L) and 24 more blend shape names on Body, the fifteen viseme shapes among them. The
+  exporter also makes the blend shape names the skeleton drives unique across the stage: Pants, Top
+  and StockingsOff keep their names on Mire.Ms.Arms and take the suffixes 2 to 6 on
+  Mire.Ms.Body.Butt, .Legs, .Shoulders, .Thighs and .Torso, in that order (Pants2 to Pants6). The
+  shape key value the .blend sets (StockingsOff at 1 on Mire.Ms.Body.Butt, StockingsOff2 in USD)
+  goes to the SkelAnimation
   /Mire/Armature/Armature/Anim, which the skeleton does not bind, so a USD reader shows it at 0: 96
   vertices sit up to 15.5 mm from the .blend's look, under the spats.
 
@@ -50,8 +52,19 @@ abstract: >-
   export_cameras=False, export_curves=False, export_points=False, export_volumes=False,
   triangulate_meshes=False, usdz_downscale_size=KEEP, merge_parent_xform=False,
   convert_scene_units=METERS. The stage is Z up, 1 metre per unit, rest pose, no animation.
-  usd/textures/ holds the eleven images packed in Mire.blend, written byte for byte as packed.
-  Two exports of the same .blend write the same prims and values in a different prim order.
+  usd/textures/ holds the nine images packed in Mire.blend that the exported materials name,
+  written byte for byte as packed (the other two, Mire.Tx.Fleur.Dress.png and Mohka.Tx.Sweater.png,
+  belong to pieces left out). Two exports of the same .blend write the same prims and values in a
+  different prim order.
+
+
+  DELIVERY COPY: usd/Mire.usdz is usd/Mire.usda and the nine images it names, as one file, for a
+  reader handed a single package that cannot open usd/textures/ beside a .usda. It holds Mire.usdc,
+  the .usda's layer written as a USDC crate by OpenUSD 26.8 (usd-core, Sdf.Layer.Export), and then
+  the nine images byte for byte, stored uncompressed and 64-byte aligned by Sdf.ZipFileWriter, each
+  entry dated 1980-01-01 so that the same inputs give the same bytes. The asset paths stay as
+  written (./textures/<file>) and resolve inside the package. The .usda stays the source; the .usdz
+  is made from it with tools/avatar_usdz.py pack in V-Sekai-fire/interactor-dress-on.
 
 
   ADDED FILES: Mire.wardrobe.tsv and Mire.materials.tsv are the repository maintainers' data, not
