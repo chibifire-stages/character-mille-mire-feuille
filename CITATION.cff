@@ -40,3 +40,11 @@ abstract: >-
   convert_scene_units=METERS. The stage is Z up, 1 metre per unit, rest pose, no animation.
   usd/textures/ holds the eleven images packed in Mire.blend, written byte for byte as packed.
   Two exports of the same .blend write the same prims and values in a different prim order.
+
+
+  ADDED FILES: Mire.wardrobe.tsv and Mire.materials.tsv are the repository maintainers' data, not
+  the author's. Mire.wardrobe.tsv gives a layer to meshes of the package's Mire.fbx, named as the
+  FBX names its nodes: off (an outfit piece that Mire.blend places beside the avatar, so not worn),
+  replaced (hidden while a garment drawn with the pen is worn) and over (worn over that garment).
+  Mire.materials.tsv gives an image to a material whose own image is in neither the package nor
+  usd/textures/: Chroma.Mt.Hair takes Mire.Tx.Hair.png, the image of the package's Mire.Mt.Hair.
